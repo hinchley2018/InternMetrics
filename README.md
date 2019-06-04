@@ -10,3 +10,6 @@ Fun Intern Metrics Project to teach .NET Core
 - Open solution in Visual Studio 2017 or latest
 - Set .Web project as Startup Project and build the project.
 - Run the application.
+
+## API
+- Our API documentation is handled via [Swagger](https://localhost:5001/swagger)

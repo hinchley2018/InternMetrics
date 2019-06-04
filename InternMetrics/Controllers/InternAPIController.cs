@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using InternMetrics.Models;
+using InternMetrics.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InternMetrics.Controllers
@@ -12,12 +15,21 @@ namespace InternMetrics.Controllers
         /// </summary>
         /// <returns>Gets the interns from the database</returns>
         [HttpGet("[action]")]
-        public IEnumerable<Intern> GetInterns()
+        
+        public IActionResult GetInterns()
         {
             var interns = new List<Intern>();
-            //TODO: get interns from the database
-
-            return interns;
+            InternService internService = new InternService();
+            try
+            {
+                interns = internService.GetInterns().ToList();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, "Database error retrieving interns");
+            }
+            
+            return Ok(interns);
         }
     }
 

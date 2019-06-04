@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace InternMetrics.Models
 {
+    [Table(name: "Interns")]
     public class Intern
     {
         public int ID { get; set; }
