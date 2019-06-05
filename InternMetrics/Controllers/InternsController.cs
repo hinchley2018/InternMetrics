@@ -37,17 +37,18 @@ namespace InternMetrics.Controllers
         }
 
         // POST: Intern/Create
+        [Route("[action]")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(string Name, string Email, string HomeState, string DesiredSkill)
         {
             try
             {
-                // TODO: Add insert logic here
+                var internService = new InternService();
+                internService.CreateIntern(Name, Email, HomeState, DesiredSkill);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception e)
             {
                 return View();
             }

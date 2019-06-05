@@ -48,5 +48,19 @@ namespace InternMetrics.Services
             }
             
         }
+
+        public void CreateIntern(string Name, string Email, string HomeState, string DesiredSkill)
+        {
+            string queryString = $@"INSERT INTO Intern (Name, Email, YearsExp, HomeStateEnum, DesiredSkill)
+                VALUES('{Name}','{Email}', {0}, {10}, '{DesiredSkill}')";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(queryString, connection);
+                connection.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
