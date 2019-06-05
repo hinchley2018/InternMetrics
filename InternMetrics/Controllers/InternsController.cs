@@ -2,25 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InternMetrics.Models;
+using InternMetrics.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InternMetrics.Controllers
 {
+    [Route("Interns")]
     public class InternsController : Controller
     {
         // GET: Intern
+        [Route("")]
         public ActionResult Index()
         {
-            return View();
+            var internService = new InternService();
+            var internList = internService.GetInterns().ToList();
+
+            return View(internList);
         }
 
         // GET: Intern/Details/5
+        [Route("[action]/{id}")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
+        [Route("[action]")]
         // GET: Intern/Create
         public ActionResult Create()
         {
@@ -45,6 +54,7 @@ namespace InternMetrics.Controllers
         }
 
         // GET: Intern/Edit/5
+        [Route("/Edit")]
         public ActionResult Edit(int id)
         {
             return View();
@@ -68,6 +78,7 @@ namespace InternMetrics.Controllers
         }
 
         // GET: Intern/Delete/5
+        [Route("/Delete/{id}")]
         public ActionResult Delete(int id)
         {
             return View();

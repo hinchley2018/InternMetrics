@@ -1,0 +1,27 @@
+﻿@model List<InternMetrics.Models.Intern>
+
+<h2>Interns</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Home State</th>
+            <th>Desired Skill</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var intern in Model)
+        {
+            <tr>
+                <td>@intern.ID</td>
+                <td>@intern.Name</td>
+                <td>@intern.Email</td>
+                <td>@intern.HomeStateEnum</td>
+                <td>@intern.DesiredSkill</td>
+            </tr>
+        }
+    </tbody>
+</table>
