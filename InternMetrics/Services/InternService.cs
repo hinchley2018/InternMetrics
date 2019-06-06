@@ -109,5 +109,18 @@ namespace InternMetrics.Services
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void DeleteIntern(int id)
+        {
+            string queryString = $"DELETE FROM Intern WHERE ID = {id}";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand(queryString, connection);
+                connection.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

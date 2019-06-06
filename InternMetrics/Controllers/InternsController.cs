@@ -89,24 +89,17 @@ namespace InternMetrics.Controllers
         }
 
         // GET: Intern/Delete/5
-        [Route("/Delete/{id}")]
+        [Route("[action]/{id}")]
         public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Intern/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                var internService = new InternService();
+                internService.DeleteIntern(id);
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
                 return View();
             }
