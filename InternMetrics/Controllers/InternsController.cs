@@ -55,20 +55,30 @@ namespace InternMetrics.Controllers
         }
 
         // GET: Intern/Edit/5
-        [Route("/Edit")]
+        [Route("[action]/{id}")]
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            return View();
+
+            var internService = new InternService();
+            var intern = internService.GetIntern(id);
+            return View(intern);
         }
 
         // POST: Intern/Edit/5
+        [Route("[action]/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, [FromForm]IFormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
+                var Name = collection["Name"];
+                var Email = collection["Email"];
+                var HomeState = collection["HomeState"];
+                var DesiredSkill = collection["DesiredSkill"];
+                var internService = new InternService();
+                internService.EditIntern(id, Name, Email, HomeState, DesiredSkill);
 
                 return RedirectToAction(nameof(Index));
             }
